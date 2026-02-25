@@ -1,0 +1,81 @@
+
+=============================================
+USAGE — crypto_full (Provider‑agnostic Crypto)
+=============================================
+
+Build & Test
+------------
+$ cargo build
+$ cargo test
+
+Examples
+--------
+1) Run the verbose example (if present):
+   $ cargo run --example example_verbose
+
+2) Add your own examples under ./examples and run with:
+   $ cargo run --example <name>
+
+Benches (Criterion)
+-------------------
+$ cargo bench
+(Requires [dev-dependencies] criterion = "0.5" and [[bench]] target in Cargo.toml.)
+
+Feature Overview
+----------------
+* Symmetric: AES-CBC (PKCS#7), AES-GCM, AES-CCM (Ccm<Aes256,U16,U13>), ChaCha20-Poly1305
+* Hash:     SHA2-256/512, SHA3-256/512
+* MAC:      HMAC-SHA256/512
+* KDF:      HKDF-SHA256/512
+* Asym:     ECDH-P256, ECDSA-P256 (DER signatures)
+* RNG:      ChaCha20Rng (seeded from OsRng)
+
+Algorithm IDs (names)
+---------------------
+AES-CBC, AES-GCM, AES-CCM, CHACHA20-POLY1305,
+SHA2-256, SHA2-512, SHA3-256, SHA3-512,
+HKDF-SHA256, HKDF-SHA512,
+HMAC-SHA256, HMAC-SHA512,
+ECDH-P256, ECDSA-P256,
+CHACHA20-RNG
+
+Nonce Lengths
+-------------
+AES-GCM: 12 bytes
+AES-CCM: 13 bytes (configured as Ccm<Aes256,U16,U13>)
+ChaCha20-Poly1305: 12 bytes
+AES-CBC IV: 16 bytes
+
+Trait Imports (IMPORTANT)
+-------------------------
+Rust requires trait methods to bring their traits into scope. Typical example:
+
+    use crypto_full::api::key::KeyManagement;
+    use crypto_full::api::symmetric::SymmetricCrypto;
+    use crypto_full::api::hash::HashCrypto;
+    use crypto_full::api::mac::MacCrypto;
+    use crypto_full::api::kdf::KdfCrypto;
+    use crypto_full::api::rng::RngCrypto;
+    use crypto_full::api::asymmetric::AsymmetricCrypto;
+    use crypto_full::api::sign::SignatureCrypto;
+
+Usage Skeleton
+--------------
+    use crypto_full::SoftwareProvider;
+    use crypto_full::api::provider::*;
+    use crypto_full::api::symmetric::SymKey;
+    // + imports of the traits as shown above
+
+    let p = SoftwareProvider::new();
+    let key: SymKey = p.import_symmetric(&[0x11; 32])?;
+    let iv = [0u8; 12];
+    let ct = p.encrypt(AES-GCM, &key, &iv, b"hello")?;
+    let pt = p.decrypt(AES-GCM, &key, &iv, &ct)?;
+
+Security Notes (Short)
+----------------------
+- Do not log keys or secrets. SymKey fields are private. Provide only safe accessors like len().
+- Use random, unique nonces for AEAD. Never reuse a (key, nonce) pair.
+- Prefer AEAD (GCM/CCM/ChaCha20-Poly1305) over CBC for new designs.
+- Zeroize keys on deletion (handled by SoftwareProvider::delete_*). You should still avoid storing keys unencrypted in app state.
+

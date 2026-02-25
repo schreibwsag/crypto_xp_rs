@@ -1,0 +1,1 @@
+pub trait KdfCrypto{fn derive(&self,alg:crate::api::provider::AlgorithmId,key:&[u8],info:&[u8],out:usize)->Result<Vec<u8>,crate::errors::CryptoError>;}

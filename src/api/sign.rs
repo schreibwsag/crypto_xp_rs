@@ -1,0 +1,1 @@
+pub trait SignatureCrypto{fn sign(&self,alg:crate::api::provider::AlgorithmId,sk:&[u8],msg:&[u8])->Result<Vec<u8>,crate::errors::CryptoError>; fn verify(&self,alg:crate::api::provider::AlgorithmId,pk:&[u8],msg:&[u8],sig:&[u8])->Result<bool,crate::errors::CryptoError>;}

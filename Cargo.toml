@@ -1,0 +1,49 @@
+
+[package]
+name = "crypto_full"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "crypto_full"
+path = "src/lib.rs"
+
+[dependencies]
+thiserror = "1.0"
+zeroize = "1.6"
+
+# Symmetric primitives
+aes = "0.8"
+cbc = "0.1"
+block-padding = "0.3"
+aes-gcm = "0.10"
+ccm = "0.5"
+chacha20poly1305 = "0.10"
+
+# Hashing
+sha2 = "0.10"
+sha3 = "0.10"
+
+# KDF
+hkdf = "0.12"
+
+# MAC
+hmac = "0.12"
+
+# Asymmetric P-256
+p256 = { version = "0.13", features = ["ecdsa", "ecdh"] }
+
+# RNG
+rand = "0.8"
+rand_chacha = "0.3"
+rand_core = "0.6"
+
+hex = "0.4"
+
+[dev-dependencies]
+criterion = "0.5"
+
+[[bench]]
+name = "crypto_bench"
+harness = false
+

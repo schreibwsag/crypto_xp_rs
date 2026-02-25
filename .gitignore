@@ -1,0 +1,115 @@
+###############################################
+# Rust / Cargo Build Artifacts
+###############################################
+
+# Target directory (debug, release, benches, docs)
+target/
+
+# Cargo incremental build cache
+**/*.rs.bk
+
+###############################################
+# Cargo.lock
+# (Do NOT commit for libraries!)
+###############################################
+
+Cargo.lock
+
+###############################################
+# Benchmarks (Criterion)
+###############################################
+
+# Criterion stores reports, plots, HTML, distributions
+target/criterion/
+
+###############################################
+# Documentation Outputs
+###############################################
+
+# cargo doc output
+target/doc/
+
+###############################################
+# IDE / Editor Files
+###############################################
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# IntelliJ / CLion / RustRover
+.idea/
+*.iml
+
+# Vim / Neovim
+*.swp
+*.swo
+
+# Emacs
+*~
+
+###############################################
+# OS Junk
+###############################################
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+###############################################
+# Security Sensitive Patterns (Recommended)
+###############################################
+
+# Prevent accidental check-in of test keys / secrets
+*.key
+*.pem
+*.der
+*.p12
+*.pkcs8
+*.rawkey
+*.secret
+secrets/
+keys/
+
+# Prevent accidental .env leakage
+.env
+.env.*
+
+###############################################
+# Build Scripts / Generated Artifacts
+###############################################
+
+# Automatically generated files
+*.generated.rs
+build/
+out/
+
+###############################################
+# Logs and Temp Files
+###############################################
+
+*.log
+*.tmp
+*.temp
+tmp/
+logs/
+
+###############################################
+# Examples build artifacts
+###############################################
+
+# Built example targets
+target/debug/examples/
+target/release/examples/
+
+###############################################
+# Coverage Outputs
+###############################################
+
+lcov.info
+coverage/
+*.profraw
+*.profdata
+

@@ -1,0 +1,1 @@
+pub trait MacCrypto{fn mac(&self,alg:crate::api::provider::AlgorithmId,key:&[u8],data:&[u8])->Result<Vec<u8>,crate::errors::CryptoError>; fn mac_verify(&self,alg:crate::api::provider::AlgorithmId,key:&[u8],data:&[u8],tag:&[u8])->Result<bool,crate::errors::CryptoError>;}

@@ -1,0 +1,1 @@
+pub trait RngCrypto{fn random(&self,alg:crate::api::provider::AlgorithmId,out:usize)->Result<Vec<u8>,crate::errors::CryptoError>;}

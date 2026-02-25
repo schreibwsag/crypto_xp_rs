@@ -1,0 +1,1 @@
+pub trait HashCrypto{fn hash(&self,alg:crate::api::provider::AlgorithmId,data:&[u8])->Result<Vec<u8>,crate::errors::CryptoError>;}
