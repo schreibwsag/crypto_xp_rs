@@ -2,12 +2,12 @@ Experimental Rust Crypto API for Learning Purposes
 ==================================================
 
 Build: cargo build
-Run example: cargo run --example example_verbose.rs
+Run example: cargo run --example example_verbose
 
 Test Suite for crypto_full
 ===============================
 
-This ZIP adds a set of unit tests that exercise the SoftwareProvider through the
+Incluldes a set of unit tests that exercise the SoftwareProvider through the
 provider-agnostic API traits. It assumes A1 (API) and A2 (Software Provider)
 are already merged into your project and `Cargo.toml` has the dependencies
 from A2.
@@ -28,7 +28,5 @@ Notes
 Criterion Benchmarks for crypto_full
 ====================================
 
-Place this folder in your crate root next to src/ and tests/.
-Run with:
-    cargo bench
+Run with: cargo bench
 
